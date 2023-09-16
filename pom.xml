@@ -15,9 +15,9 @@
 	<name>dvbn_home_server</name>
 	<description>dvbn_home_server</description>
 	<modules>
-		<module>common</module>
-		<module>server</module>
-        <module>bean</module>
+		<module>home_common</module>
+		<module>home_server</module>
+        <module>home_bean</module>
     </modules>
 
 	<properties>

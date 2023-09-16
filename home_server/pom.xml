@@ -9,19 +9,19 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>server</artifactId>
+    <artifactId>home_server</artifactId>
 
     <dependencies>
 
         <dependency>
             <groupId>com.dvbn</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>home_common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.dvbn</groupId>
-            <artifactId>bean</artifactId>
+            <artifactId>home_bean</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

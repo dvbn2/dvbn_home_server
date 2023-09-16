@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>bean</artifactId>
+    <artifactId>home_bean</artifactId>
 
     <dependencies>
         <dependency>
