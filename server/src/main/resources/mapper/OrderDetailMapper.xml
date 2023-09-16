@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dvbn.mapper.OrderDetailMapper">
+
+    <resultMap id="BaseResultMap" type="com.dvbn.domain.OrderDetail">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="orderId" column="order_id" jdbcType="BIGINT"/>
+            <result property="residentialId" column="residential_id" jdbcType="BIGINT"/>
+            <result property="price" column="price" jdbcType="DECIMAL"/>
+            <result property="checkInDate" column="check_in_date" jdbcType="DATE"/>
+            <result property="checkOutDate" column="check_out_date" jdbcType="DATE"/>
+            <result property="guestCount" column="guest_count" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_id,residential_id,
+        price,check_in_date,check_out_date,
+        guest_count
+    </sql>
+</mapper>
