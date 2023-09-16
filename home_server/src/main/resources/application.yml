@@ -1,0 +1,47 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+    druid:
+      driver-class-name: ${home.datasource.driver-class-name}
+      url: jdbc:mysql://${home.datasource.host}:${home.datasource.port}/${home.datasource.database}?useSSL=false&serverTimezone=UTC
+      username: ${home.datasource.username}
+      password: ${home.datasource.password}
+  redis:
+    host: ${home.redis.host}
+    port: ${home.redis.port}
+    database: ${home.redis.database}
+    lettuce:
+      pool:
+        max-active: ${home.redis.lettuce.pool.max-active}
+        max-idle: ${home.redis.lettuce.pool.max-idle}
+        min-idle: ${home.redis.lettuce.pool.min-idle}
+        time-between-eviction-runs: ${home.redis.lettuce.pool.time-between-eviction-runs}
+
+logging:
+  level:
+    com:
+      home:
+        mapper: debug
+        service: info
+        controller: info
+
+home:
+  # 在不同的环境有不同的配置，就使用${}引用其他配置文件的配置，都一样的可以直接写在主配置文件里
+  alioss:
+    endpoint: ${home.alioss.endpoint}
+    access-key-id: ${home.alioss.access-key-id}
+    access-key-secret: ${home.alioss.access-key-secret}
+    bucket-name: ${home.alioss.bucket-name}
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true #开启驼峰命名
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.home.domain

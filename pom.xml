@@ -31,7 +31,6 @@
 		<aliyun.sdk.oss>3.10.2</aliyun.sdk.oss>
 		<knife4j>3.0.2</knife4j>
 		<aspectj>1.9.4</aspectj>
-		<jjwt>0.9.1</jjwt>
 		<jaxb-api>2.3.1</jaxb-api>
 		<poi>3.16</poi>
 	</properties>
@@ -74,12 +73,6 @@
 			</dependency>
 
 			<dependency>
-				<groupId>com.github.xiaoymin</groupId>
-				<artifactId>knife4j-spring-boot-starter</artifactId>
-				<version>${knife4j}</version>
-			</dependency>
-
-			<dependency>
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjrt</artifactId>
 				<version>${aspectj}</version>
@@ -91,11 +84,6 @@
 				<version>${aspectj}</version>
 			</dependency>
 
-			<dependency>
-				<groupId>io.jsonwebtoken</groupId>
-				<artifactId>jjwt</artifactId>
-				<version>${jjwt}</version>
-			</dependency>
 
 			<dependency>
 				<groupId>com.aliyun.oss</groupId>
@@ -119,12 +107,6 @@
 				<groupId>org.apache.poi</groupId>
 				<artifactId>poi-ooxml</artifactId>
 				<version>${poi}</version>
-			</dependency>
-			<!--微信支付-->
-			<dependency>
-				<groupId>com.github.wechatpay-apiv3</groupId>
-				<artifactId>wechatpay-apache-httpclient</artifactId>
-				<version>0.4.8</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

@@ -2,6 +2,7 @@ package com.dvbn.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.dvbn.domain.AddressBooks;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @author dvbn
