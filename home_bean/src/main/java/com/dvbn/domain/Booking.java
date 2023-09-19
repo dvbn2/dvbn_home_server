@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -37,12 +38,12 @@ public class Booking implements Serializable {
     /**
      * 入住日期
      */
-    private Date checkInDate;
+    private LocalDateTime checkInDate;
 
     /**
      * 退房日期
      */
-    private Date checkOutDate;
+    private LocalDateTime checkOutDate;
 
     /**
      * 总价格
@@ -57,12 +58,12 @@ public class Booking implements Serializable {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 修改时间
      */
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     /**
      * 创建用户id

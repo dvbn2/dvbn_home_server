@@ -26,6 +26,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public Result<?> exceptionHandler(BaseException exception) {
         log.error("异常信息：{}", exception.getMessage());
-        return Result.error(exception.getMessage());
+        if (exception.getCode() == null) {
+            return Result.error(exception.getMessage());
+        } else {
+            return Result.error(exception.getMessage(), exception.getCode());
+        }
     }
 }

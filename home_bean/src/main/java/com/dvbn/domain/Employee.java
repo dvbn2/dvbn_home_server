@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -39,6 +40,11 @@ public class Employee implements Serializable {
     private String password;
 
     /**
+     * 手机号
+     */
+    private String phone;
+
+    /**
      * 电子邮件
      */
     private String email;
@@ -61,12 +67,12 @@ public class Employee implements Serializable {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 修改时间
      */
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     /**
      * 创建人id

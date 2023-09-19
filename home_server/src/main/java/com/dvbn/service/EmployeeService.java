@@ -2,6 +2,9 @@ package com.dvbn.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.dvbn.domain.Employee;
+import com.dvbn.dto.EmployeeLoginDTO;
+import com.dvbn.result.Result;
+import com.dvbn.vo.TokenVo;
 
 /**
  * @author dvbn
@@ -10,4 +13,9 @@ import com.dvbn.domain.Employee;
  */
 public interface EmployeeService extends IService<Employee> {
 
+    /**
+     * 员工登录
+     * @return 返回登录是否成功的信息
+     */
+    Result<TokenVo> login(EmployeeLoginDTO employeeLoginDTO);
 }

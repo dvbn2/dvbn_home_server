@@ -2,9 +2,7 @@ package com.dvbn.controller.admin;
 
 import com.dvbn.result.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author dvbn
@@ -18,6 +16,7 @@ public class TestController {
 
     @GetMapping
     public Result<String> test() {
+        log.info("测试=========》》》》》》》》");
         return Result.success("test");
     }
 }

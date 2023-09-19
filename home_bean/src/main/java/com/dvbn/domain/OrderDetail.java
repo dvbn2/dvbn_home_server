@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -47,12 +48,12 @@ public class OrderDetail implements Serializable {
     /**
      * 入住时间
      */
-    private Date checkInDate;
+    private LocalDateTime checkInDate;
 
     /**
      * 退房时间
      */
-    private Date checkOutDate;
+    private LocalDateTime checkOutDate;
 
     /**
      * 入住人数
