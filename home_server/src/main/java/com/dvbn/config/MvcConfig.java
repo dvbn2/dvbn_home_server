@@ -67,7 +67,7 @@ public class MvcConfig extends WebMvcConfigurationSupport {
         // 创建消息转换器对象
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         // 为消息转换器设置一个对象转换器， 将java对象序列化为JSON数据
-//        converter.setObjectMapper(new JacksonObjectMapper());
+        converter.setObjectMapper(new JacksonObjectMapper());
         // 将上面的消息转换器对象追加到mvc框架的转换器集合中
         // 优先级设置为0则使用现在配置的转换器
         converters.add(0, converter);
