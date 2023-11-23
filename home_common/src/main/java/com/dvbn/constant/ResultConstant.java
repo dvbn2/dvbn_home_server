@@ -7,5 +7,9 @@ package com.dvbn.constant;
  */
 public class ResultConstant {
 
-    public static final String LOGIN_SUCCESS = "登录成功";
+    public static final String UPDATE_SUCCESS = "修改成功";
+    public static final String UPDATE_ERROR = "修改失败";
+    public static final String QUERY_SUCCESS = "查询成功";
+    public static final String QUERY_ERROR = "查询失败";
+
 }

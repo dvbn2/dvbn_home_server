@@ -17,7 +17,10 @@
             <result property="idNumber" column="id_number" jdbcType="CHAR"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="createUser" column="create_user" jdbcType="BIGINT"/>
+            <result property="updateUser" column="update_user" jdbcType="BIGINT"/>
             <result property="score" column="score" jdbcType="INTEGER"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -25,6 +28,38 @@
         email,name,sex,
         user_type,phone_number,status,
         id_number,create_time,update_time,
-        score
+        create_user,update_user,score,avatar
     </sql>
+    <update id="userUpdate" parameterType="user">
+        update user
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="userType != null">
+                user_type = #{userType},
+            </if>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="score != null">
+                score = #{score},
+            </if>
+            update_user = #{updateUser},
+            update_time = #{updateTime}
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

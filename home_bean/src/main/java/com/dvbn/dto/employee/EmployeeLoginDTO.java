@@ -1,9 +1,12 @@
-package com.dvbn.dto;
+package com.dvbn.dto.employee;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * @author dvbn
@@ -14,7 +17,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class EmployeeLoginDTO {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class EmployeeLoginDTO implements Serializable {
     private String username;
     private String password;
+    private static final long serialVersionUID = 1L;
 }

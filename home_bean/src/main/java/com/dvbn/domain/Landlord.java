@@ -7,14 +7,11 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * 房东表
  *
- * @author dvbn
  * @TableName landlord
- * @Date 2023/09/16
  */
 @TableName(value = "landlord")
 @Data
@@ -23,32 +20,27 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Landlord implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      * 直接使用用户id
      */
     @TableId
     private Long id;
-
     /**
      * 简介
      */
     private String intro;
-
     /**
      * 银行账户
      */
     private String bankAccount;
-
     /**
      * 创建时间
      */
     private LocalDateTime createTime;
-
     /**
      * 修改时间
      */
     private LocalDateTime updateTime;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @author dvbn
  * @title: TokenVo
@@ -14,7 +16,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class TokenVo {
+public class TokenVO implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 登录令牌
      */

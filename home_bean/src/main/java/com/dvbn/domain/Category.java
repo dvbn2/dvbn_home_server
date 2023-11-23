@@ -7,14 +7,11 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * 民宿类型表
  *
- * @author dvbn
  * @TableName category
- * @Date 2023/09/16
  */
 @TableName(value = "category")
 @Data
@@ -23,47 +20,39 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Category implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      * 主键
      */
     @TableId
     private Long id;
-
     /**
      * 类型
      */
     private String typeName;
-
     /**
      * 类型描述
      */
     private String description;
-
     /**
      * 类型状态 0:禁用，1:起用
      */
     private Integer status;
-
     /**
      * 创建时间
      */
     private LocalDateTime createTime;
-
     /**
      * 修改时间
      */
     private LocalDateTime updateTime;
-
     /**
      * 创建人id
      */
     private Long createUser;
-
     /**
      * 修改人id
      */
     private Long updateUser;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

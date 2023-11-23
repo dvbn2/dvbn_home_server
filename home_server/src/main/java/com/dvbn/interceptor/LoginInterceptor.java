@@ -2,13 +2,14 @@ package com.dvbn.interceptor;
 
 import cn.hutool.json.JSONConfig;
 import cn.hutool.json.JSONUtil;
-import com.dvbn.constant.ExceptionConstant;
 import com.dvbn.result.Result;
 import com.dvbn.utils.BaseContext;
+import com.dvbn.utils.ErrorCode;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * @author dvbn
@@ -22,7 +23,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (BaseContext.getCurrentId() == null) {
             // 没有， 需要拦截，设置状态码
             // 创建响应数据
-            Result<String> result = Result.error(ExceptionConstant.USER_NOT_LOGIN, 401);
+            Result<String> result = Result.error(ErrorCode.NO_AUTH_ERROR);
 
             // 设置序列化规则
             // 创建一个 JSONConfig对象，设置保留为null的字段

@@ -1,7 +1,7 @@
 package com.dvbn.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.dvbn.domain.Order;
+import com.dvbn.domain.Orders;
 
 /**
  * @author dvbn
@@ -9,7 +9,7 @@ import com.dvbn.domain.Order;
  * @createDate 2023-09-16 19:16:02
  * @Entity com.dvbn.domain.Order
  */
-public interface OrderMapper extends BaseMapper<Order> {
+public interface OrdersMapper extends BaseMapper<Orders> {
 
 }
 

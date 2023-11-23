@@ -2,12 +2,18 @@ package com.dvbn.config;
 
 import com.dvbn.interceptor.LoginInterceptor;
 import com.dvbn.interceptor.RefreshTokenInterceptor;
+import com.dvbn.utils.JacksonObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author dvbn
@@ -15,18 +21,55 @@ import javax.annotation.Resource;
  * @createDate 2023/9/19 10:47
  */
 @Configuration
-public class MvcConfig implements WebMvcConfigurer {
+@Slf4j
+public class MvcConfig extends WebMvcConfigurationSupport {
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor())
+        /*registry.addInterceptor(new LoginInterceptor())
+                .excludePathPatterns(
+                        "/doc.html",
+                        "/webjars/**",
+                        "/swagger-resources/**",
+                        "/v3/**",
+                        "/favicon.ico"
+                )
                 .excludePathPatterns(
                         "/employee/login"
-                ).order(1); // 放行路径
+                ).order(1); // 放行路径*/
         registry.addInterceptor(new RefreshTokenInterceptor(stringRedisTemplate))
-                .addPathPatterns("/**").order(0); // 拦截所有请求
+                .addPathPatterns("/**")
+                .order(0); // 拦截所有请求
+    }
+
+    /**
+     * 设置静态资源映射
+     *
+     * @param registry
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        log.info("开始设置静态资源映射...");
+        registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+
+    /**
+     * 统一时间响应格式转换，统一Long和BigInteger转String传给前端
+     *
+     * @param converters
+     */
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        // 创建消息转换器对象
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        // 为消息转换器设置一个对象转换器， 将java对象序列化为JSON数据
+//        converter.setObjectMapper(new JacksonObjectMapper());
+        // 将上面的消息转换器对象追加到mvc框架的转换器集合中
+        // 优先级设置为0则使用现在配置的转换器
+        converters.add(0, converter);
     }
 }

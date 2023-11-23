@@ -7,6 +7,6 @@ package com.dvbn.constant;
  */
 public class RedisConstant {
 
-    public static final String EMPLOYEE_LOGIN_TOKEN = "employee:login:token:";
-    public static final Long TOKEN_SURVIVE_TIME = 30L;
+    public static final String LOGIN_TOKEN_KEY = "employee:login:token:";
+    public static final Long LOGIN_TOKEN_TTL = 30L;
 }

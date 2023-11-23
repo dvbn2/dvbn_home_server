@@ -7,14 +7,11 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * 评论表
  *
- * @author dvbn
  * @TableName reviews
- * @Date 2023/09/16
  */
 @TableName(value = "reviews")
 @Data
@@ -23,47 +20,39 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Reviews implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      * 主键
      */
     @TableId
     private Long id;
-
     /**
      * 民宿id
      */
     private Long residentialId;
-
     /**
      * 评分
      */
     private String rating;
-
     /**
      * 评论内容
      */
     private String comment;
-
     /**
      * 创建时间
      */
     private LocalDateTime createTime;
-
     /**
      * 修改时间
      */
     private LocalDateTime updateTime;
-
     /**
      * 创建人id
      */
     private Long createUser;
-
     /**
      * 修改人id
      */
     private Long updateUser;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

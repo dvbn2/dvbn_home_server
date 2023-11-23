@@ -1,7 +1,9 @@
 package com.dvbn.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.dvbn.annotation.AutoFill;
 import com.dvbn.domain.User;
+import com.dvbn.enumeration.OperationType;
 
 /**
  * @author dvbn
@@ -11,6 +13,12 @@ import com.dvbn.domain.User;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    /**
+     * 修改用户数据
+     * @param user 要修改的用户数据对象
+     */
+    @AutoFill(OperationType.UPDATE)
+    boolean userUpdate(User user);
 }
 
 
