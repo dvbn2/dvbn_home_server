@@ -28,9 +28,6 @@ import static com.dvbn.constant.AutoFillConstant.*;
 @Component
 public class AutoFillAspect {
 
-    @Resource
-    private EmployeeMapper employeeMapper;
-
     /**
      * 前置通知，为公共字段赋值
      */
@@ -85,11 +82,5 @@ public class AutoFillAspect {
                 throw new RuntimeException(e);
             }
         }
-
-
-        Employee employee = new Employee();
-        employee.setId(currentId);
-        employee.setEndTime(now);
-        employeeMapper.updateEndTime(employee);
     }
 }

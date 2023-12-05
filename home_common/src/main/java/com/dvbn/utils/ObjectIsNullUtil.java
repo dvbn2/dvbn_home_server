@@ -21,14 +21,17 @@ public class ObjectIsNullUtil {
      * @return 返回检测结果
      */
     public static boolean objectCheckIsNull(Object object) {
-        boolean flag = true; //定义返回结果，默认为false
+        //定义返回结果，默认为false
+        boolean flag = true;
 
         // 对象为null直接返回
         if (Objects.isNull(object)) {
             return true;
         }
-        Class<?> clazz = object.getClass(); // 得到类对象
-        Field[] fields = clazz.getDeclaredFields(); // 得到所有属性
+        // 得到类对象
+        Class<?> clazz = object.getClass();
+        // 得到所有属性
+        Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
             Object fieldValue;

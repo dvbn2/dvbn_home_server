@@ -25,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.binding.BindingException;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -58,6 +59,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
      * @return 返回登录是否成功的信息
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Result<TokenVO> employeeLogin(EmployeeLoginDTO employeeLoginDTO, HttpServletRequest request) {
         ThrowUtils.throwIf(ObjectIsNullUtil.objectCheckIsNull(employeeLoginDTO), ErrorCode.PARAMS_ERROR);
 
@@ -93,8 +95,17 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
             stringRedisTemplate.expire(LOGIN_TOKEN_KEY + authorization, LOGIN_TOKEN_TTL, TimeUnit.DAYS);
             return Result.success("登录成功", new TokenVO(authorization, employee.getId()));
         }
-        // 5.2 无token,生成token保存到Redis中
-        String token = UUID.randomUUID().toString(true); // true：取消uuid中的-
+        // 5.2 添加最后登录时间
+        employee.setEndTime(LocalDateTime.now());
+        boolean b = employeeMapper.updateEndTime(employee);
+
+        if (b) {
+            throw new BusinessException(ErrorCode.OPERATION_ERROR);
+        }
+
+        // 5.3 无token,生成token保存到Redis中
+        // true：取消uuid中的-
+        String token = UUID.randomUUID().toString(true);
 
         // 存入redis
         stringRedisTemplate.opsForValue().set(LOGIN_TOKEN_KEY + token,
@@ -102,6 +113,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
 
         // 6. 返回登录的token，让浏览器保存到请求头
         TokenVO tokenVo = new TokenVO(token, employee.getId());
+
         return Result.success("登录成功", tokenVo);
     }
 
@@ -113,14 +125,13 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
      */
     @Override
     public Result<String> addEmployee(EmployeeAddDTO employeeAddDTO) {
+        ThrowUtils.throwIf(ObjectIsNullUtil.objectCheckIsNull(employeeAddDTO), ErrorCode.PARAMS_ERROR);
         Employee employee = new Employee();
         BeanUtil.copyProperties(employeeAddDTO, employee);
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setCreateTime(LocalDateTime.now());
-
-        save(employee);
+        boolean b = employeeMapper.addEmployee(employee);
+        if (!b) {
+            throw new BusinessException(ErrorCode.OPERATION_ERROR, "新增失败");
+        }
         return Result.success("添加成功");
     }
 

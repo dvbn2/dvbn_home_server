@@ -80,7 +80,7 @@ public class Employee implements Serializable {
     private Long updateUser;
 
     /**
-     * 最后操作时间
+     * 最后登录时间
      */
     private LocalDateTime endTime;
 }

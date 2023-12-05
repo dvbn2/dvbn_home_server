@@ -1,6 +1,5 @@
 package com.dvbn.config;
 
-import com.dvbn.interceptor.LoginInterceptor;
 import com.dvbn.interceptor.RefreshTokenInterceptor;
 import com.dvbn.utils.JacksonObjectMapper;
 import lombok.extern.slf4j.Slf4j;

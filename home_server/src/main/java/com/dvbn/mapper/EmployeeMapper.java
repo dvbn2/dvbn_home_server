@@ -6,6 +6,7 @@ import com.dvbn.domain.Employee;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
+import static com.dvbn.enumeration.OperationType.INSERT;
 import static com.dvbn.enumeration.OperationType.UPDATE;
 
 /**
@@ -33,7 +34,16 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
     boolean update(Employee employee);
 
     /**
-     * 修改员工最后操作时间
+     * 添加员工
+     *
+     * @param employee 员工数据对象
+     * @return 返回添加结果
+     */
+    @AutoFill(value = INSERT)
+    boolean addEmployee(Employee employee);
+
+    /**
+     * 修改员工最后登录时间
      * @param employee 已员工id为key，更新时间为value
      * @return 修改是否成功
      */

@@ -34,7 +34,7 @@ public class EmployeeController {
      * @return 返回登录是否成功的信息
      */
     @PostMapping("/login")
-    @Login
+    @Login("admin")
     public Result<TokenVO> employeeLogin(@RequestBody EmployeeLoginDTO employeeLoginDTO, HttpServletRequest request) {
 
         Result<TokenVO> tokenVOResult = employeeService.employeeLogin(employeeLoginDTO, request);

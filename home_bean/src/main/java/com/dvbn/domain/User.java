@@ -22,6 +22,9 @@ import java.time.LocalDateTime;
 public class User implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    public static final Integer User = 0;
+    public static final Integer Landlord = 1;
     /**
      * 主键
      */
